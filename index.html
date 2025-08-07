@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> furbizia| Персональный сайт</title>
+    <title>furbizia| Персональный сайт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #00ff00;
-            --secondary-color: #003300;
+            --secondary-color: #00aa00; /* Более яркий зеленый */
             --background-color: #000000;
             --text-color: #e0e0e0;
+            --matrix-opacity: 0.3; /* Увеличил непрозрачность матрицы */
         }
         
         * {
@@ -19,7 +21,7 @@
         }
         
         body {
-            font-family: 'Courier New', monospace;
+            font-family: 'Share Tech Mono', monospace; /* Новый шрифт */
             background-color: var(--background-color);
             color: var(--primary-color);
             line-height: 1.6;
@@ -34,7 +36,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.15;
+            opacity: var(--matrix-opacity); /* Используем переменную */
             pointer-events: none;
         }
         
@@ -75,6 +77,7 @@
             margin-bottom: 0.5rem;
             color: var(--primary-color);
             text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+            letter-spacing: 2px; /* Добавил межбуквенный интервал */
         }
         
         .nickname {
@@ -118,7 +121,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 1rem;
-            background-color: rgba(0, 30, 0, 0.3);
+            background-color: rgba(0, 60, 0, 0.4); /* Более яркий фон */
             border: 1px solid var(--secondary-color);
             border-radius: 4px;
             color: var(--primary-color);
@@ -129,10 +132,10 @@
         }
         
         .social-link:hover, .game-link:hover, .crypto-wallet:hover, .telegram-btn:hover {
-            background-color: rgba(0, 60, 0, 0.5);
+            background-color: rgba(0, 100, 0, 0.6); /* Ярче при наведении */
             border-color: var(--primary-color);
             transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Более яркая тень */
         }
         
         .crypto-icon, .telegram-icon {
@@ -143,13 +146,13 @@
         .wallet-address {
             font-size: 0.85rem;
             word-break: break-all;
-            background-color: rgba(0, 40, 0, 0.3);
+            background-color: rgba(0, 80, 0, 0.4); /* Более яркий фон */
             padding: 0.5rem;
             border-radius: 4px;
             margin-top: 0.5rem;
             width: 100%;
             text-align: center;
-            font-family: monospace;
+            font-family: 'Share Tech Mono', monospace;
         }
         
         .telegram-section {
@@ -169,13 +172,14 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0, 80, 0, 0.9);
+            background-color: rgba(0, 150, 0, 0.9); /* Более яркое уведомление */
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.3s;
+            font-family: 'Share Tech Mono', monospace;
         }
         
         footer {
@@ -306,7 +310,7 @@
             
             // Characters - taken from Katakana and Latin alphabets
             const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            const fontSize = 14;
+            const fontSize = 16; /* Увеличил размер шрифта матрицы */
             const columns = Math.floor(canvas.width / fontSize);
             
             // Set up the drops
@@ -322,7 +326,7 @@
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
                 ctx.fillStyle = '#00ff00';
-                ctx.font = `${fontSize}px monospace`;
+                ctx.font = `${fontSize}px 'Share Tech Mono', monospace`; /* Новый шрифт для матрицы */
                 
                 for (let i = 0; i < drops.length; i++) {
                     const text = chars.charAt(Math.floor(Math.random() * chars.length));
@@ -367,7 +371,4 @@
         }
     </script>
 </body>
-
 </html>
-
-
