@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">AM
+    <title> furbizia| Персональный сайт</title>
+    <style>
+        :root {
+            --primary-color: #00ff00;
+            --secondary-color: #003300;
+            --background-color: #000000;
+            --text-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+        }
+        
+        .nickname {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-section {
+            margin: 2rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link, .game-link, .crypto-wallet, .telegram-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background-color: rgba(0, 30, 0, 0.3);
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .social-link:hover, .game-link:hover, .crypto-wallet:hover, .telegram-btn:hover {
+            background-color: rgba(0, 60, 0, 0.5);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+        
+        .crypto-icon, .telegram-icon {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .wallet-address {
+            font-size: 0.85rem;
+            word-break: break-all;
+            background-color: rgba(0, 40, 0, 0.3);
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            width: 100%;
+            text-align: center;
+            font-family: monospace;
+        }
+        
+        .telegram-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .telegram-btn {
+            max-width: 300px;
+            margin: 0 auto;
+            flex-direction: row;
+            justify-content: center;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 80, 0, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            border-top: 1px solid var(--secondary-color);
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .wallet-address {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix" class="matrix-bg"></canvas>
+    <div id="copyNotification" class="copy-notification">Адрес скопирован!</div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <!-- Замените на свой логотип -->
+                <img src="logo-placeholder.png" alt="Логотип">
+            </div>
+            <h1>furbazia</h1>
+            <div class="nickname"></div>
+        </header>
+        
+        <!-- Криптокошельки -->
+        <section class="social-section">
+            <h2 class="section-title">Криптовалютные кошельки</h2>
+            <div class="links-grid">
+                <div class="crypto-wallet" onclick="copyToClipboard('TON_WALLET_ADDRESS')">
+                    <img src="https://cryptologos.cc/logos/toncoin-ton-logo.png" alt="TON" class="crypto-icon">
+                    <span>TON</span>
+                    <div class="wallet-address" id="TON_WALLET_ADDRESS">UQB6IKPbRslMTpp2hXx5Esi71SlzmxgQUh3TUhhqUO9Tr-R_</div>
+                </div>
+                
+                <div class="crypto-wallet" onclick="copyToClipboard('ETH_WALLET_ADDRESS')">
+                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum" class="crypto-icon">
+                    <span>Ethereum</span>
+                    <div class="wallet-address" id="ETH_WALLET_ADDRESS">0x0C7dDFfDAFbC4cFb9c14E25A50aDd56081576c56</div>
+                </div>
+                
+                <div class="crypto-wallet" onclick="copyToClipboard('BTC_WALLET_ADDRESS')">
+                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" class="crypto-icon">
+                    <span>Bitcoin</span>
+                    <div class="wallet-address" id="BTC_WALLET_ADDRESS">3Prf5XA9agRa12SXKgDWfyzTHktsekNtst</div>
+                </div>
+                
+                <div class="crypto-wallet" onclick="copyToClipboard('TRX_WALLET_ADDRESS')">
+                    <img src="https://cryptologos.cc/logos/tron-trx-logo.png" alt="TRON" class="crypto-icon">
+                    <span>TRON</span>
+                    <div class="wallet-address" id="TRX_WALLET_ADDRESS">0xeb359f083de82a2a5fcb0c63226b14bae35cefa7</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Кнопка Telegram -->
+        <section class="telegram-section">
+            <h2 class="section-title">По всем вопросам</h2>
+            <a href="https://t.me/brick_1apr" class="telegram-btn" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+                <span>@brick_1apr</span>
+            </a>
+        </section>
+        
+        <!-- Социальные сети -->
+        <section class="social-section">
+            <h2 class="section-title">Социальные сети</h2>
+            <div class="links-grid">
+                <a href="#" class="social-link">
+                    <span>VK</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span>Telegram</span>
+                </a>
+                
+                <a href="#" class="social-link">
+                    <span>Twitter/X</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span>Instagram</span>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Игровые профили -->
+        <section class="social-section">
+            <h2 class="section-title">Игровые профили</h2>
+            <div class="links-grid">
+                <a href="#" class="game-link">
+                    <span>Steam</span>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy;Все права защищены.</p>
+    </footer>
+    
+    <script>
+        // Matrix background animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas to full window size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Characters - taken from Katakana and Latin alphabets
+            const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const fontSize = 14;
+            const columns = Math.floor(canvas.width / fontSize);
+            
+            // Set up the drops
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+            
+            // Drawing the characters
+            function drawMatrix() {
+                // Black BG with opacity
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#00ff00';
+                ctx.font = `${fontSize}px monospace`;
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    // Reset drop to top when it reaches bottom
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+            
+            // Animation loop
+            setInterval(drawMatrix, 33);
+        });
+
+        // Функция для копирования адреса кошелька
+        function copyToClipboard(id) {
+            const element = document.getElementById(id);
+            const text = element.innerText;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Показываем уведомление
+                const notification = document.getElementById('copyNotification');
+                notification.style.opacity = '1';
+                
+                // Скрываем уведомление через 2 секунды
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка при копировании: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
